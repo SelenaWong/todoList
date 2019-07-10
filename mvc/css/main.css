@@ -1,0 +1,312 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	min-width: 230px;
+	max-width: 550px;
+	margin: 0 auto;
+	background: #f5f5f5;
+	font: 14px 'Helvetica Neue' Helvetica, Arial,sans-serif;
+	font-weight: 300;
+	color: #4d4d4d;
+}
+label{
+	cursor: default;
+}
+input{
+	outline: none;/** checkbox选中时会出现蓝色的框,设置outline为none,去除轮廓框*/
+}
+button {
+	border: none;
+	outline: none;
+}
+
+button{
+	margin: 0;
+	padding: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	font-weight: inherit;
+	color: inherit;
+}
+.todoapp{
+	width: 100%;
+	position: relative;
+	margin: 130px 0 40px 0;
+	background: #fff;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2),
+				0 25px 50px 0 rgba(0,0,0,0.1);
+	/**
+	 * 基本用法：
+	 * box-shadow: x-坐标值 y-坐标值 模糊程度 颜色值;
+	 * box-shadow: 2px 2px 5px #000;
+	 *
+	 * 内阴影inset/外阴影outset:
+	 * box-shadow: inset x-坐标值 y-坐标值 模糊程度 颜色值;
+	 * box-shadow: inset 2px 2px 5px #000;
+	 *
+	 * 阴影扩展长度值:
+	 * box-shadow: x-坐标值 y-坐标值 模糊程度 阴影扩展长度值 颜色值;
+	 * box-shadow: 0px 0px 5px 10px #000;
+	 * 
+	 * 多重阴影：
+	 * 声明多个shadows时， 用逗号将shadows隔开。
+	 * box-shadow: 3px 3px red, -1em 0 0.4em olive;
+	 * 
+	 */
+}
+
+.todoapp h1{
+	position: absolute;
+	top: -130px;
+	width: 100%;
+	font-size: 100px;
+	font-weight: 100;
+	text-align: center;
+	color: rgba(175,47,47,0.15);
+}
+.new-todos{
+	width: 100%;
+	padding: 16px 16px 16px 60px;
+	border: none;
+	background: rgba(0,0,0,0.003);
+	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+	font-family: inherit;
+	font-size: inherit;
+	line-height: 1.4em;
+	color: inherit;
+	/* 
+	 * 问题现象：input 设置 width:100% 和padding后，输入框宽度超出父节点
+	 * 问题分析：box-sizing: content-box | border-box | inherit;
+	 * content-box只把宽高设为content，在宽度和高度之外绘制元素的内边距和边框;
+	 * border-box把元素的padding和border都在已设定的宽度和高度内进行绘制;
+	 * W3C标准定义：content宽度就是实际定义的宽度，width用户定义多宽conten就是多宽；
+     * 传统的IE下定义：content包括：width、padding、border，也就是content=width+padding+border；
+	 * 解决方法： 设置box-sizing: border-box;
+	 * 
+	 **/
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+}
+
+/* 设置输入框占位符字体颜色 */
+.todoapp input::-webkit-input-placeholder{ /* Webkit browsers */
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+.todoapp input::-moz-placeholder{ /* Mozilla Firefox 4 to 18 */
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+.todoapp input:-moz-placeholder{ /* Mozilla Firefox 19+ */
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+.todoapp input::-ms-input-placeholder{ /* IE 10+ */
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+
+
+.main{
+	position: relative;
+	z-index: 200;
+	border-top: 1px solid #e6e6e6;
+}
+.toggle-all{
+	width: 1px;
+	height: 1px;
+	border: none;
+	opacity: 0;
+	position: absolute;
+	right: 100%;
+	bottom: 100%;
+}
+.toggle-all + label{
+	width: 60px;
+	height: 34px;
+	font-size: 0;
+	position: absolute;
+	top: -52px;
+	left: -13px;
+}
+/*.todo-list{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.todo-list li {
+	height: 40px;
+	line-height: 40px;
+	padding: 16px 16px 16px 60px;
+	text-align: left;
+	border-bottom: 1px solid #ededed;
+	font-size: 24px;
+}
+.todo-list li:last-child{
+	border-bottom: none;
+}*/
+.footer{
+	height: 20px;
+	color: #777;
+	padding: 10px 15px;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+}
+.todo-count{
+	float: left;
+	text-align: left;
+}
+.filters{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.filters li {
+	display: inline;
+}
+.filters li a{
+	margin: 3px;
+	padding: 3px 7px;
+	border: 1px solid rgba(175,47,47,0.15);
+	border-radius: 3px;
+	text-decoration: none;
+	color: inherit; /*继承父标签的颜色，如果父元素没有，则向上查找，直到使用浏览器默认值为止*/
+	cursor: pointer;
+}
+.filters li a.selected{
+	border-color: rgba(175,47,47,0.5)
+}
+.clear-completed{
+	float: right;
+	display: block;
+	position: relative;
+	line-height: 20px;
+	text-decoration: none;
+	background: none;
+	/*vertical-align: baseline;*/
+	border: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+.info {
+	margin: 65px auto 0;
+	color: #bfbfbf;
+	font-size: 10px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/*************toggle list 中的样式****************/
+.todo-list{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.todo-list li {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+}
+.todo-list li:last-child{
+	border-bottom: none;
+}
+.todo-list li .toggle{
+	text-align: center;
+	width: 40px;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	border: none; /* Mobile Safari */
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+/**双击li时，li动态添加一个editing类属性，并显示class为edit的input输入框***/
+.todo-list li.editing{
+	border-bottom: none;
+	padding: 0;
+}
+.todo-list li.editing .edit{
+	display: block;
+	width: 506px;
+	padding: 12px 16px;
+	margin: 0 0 0 43px;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+}
+
+.todo-list li.editing .view {
+	display: none;
+}
+
+.todo-list li .edit{
+	display: none;
+}
+
+.todo-list li .toggle + label{
+	background-image: url(../img/checked_default.png);
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	background-position: left 10px center;
+}
+.todo-list li .toggle:checked + label {
+	background-image: url(../img/checked.png);
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	background-position: left 10px center;
+/*	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
+	background-repeat: no-repeat;
+	background-position: center left;*/
+}
+.todo-list li label{
+	word-break: break-all;
+	padding: 15px 15px 15px 60px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+}
+.todo-list li.completed label {
+	color: #d9d9d9;
+	text-decoration: line-through;
+}
+
+.todo-list li .destroy{
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	font-size: 30px;
+	color: #cc9a9a;
+	margin-bottom: 11px;
+}
+.todo-list li:hover .destroy{
+	display: block;
+}
+.todo-list li .destroy:before{
+	color: #af5b5e;
+}
+.todo-list li .destroy:after{
+	content: 'x';
+}
+

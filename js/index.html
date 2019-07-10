@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TodoList</title>
+	<link rel="stylesheet" href="css/main.css" type="text/css">
+	<script src="main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<section class="todoapp">
+		<header class="header">
+			<h1>todos</h1>
+			<input type="text" class="new-todos" id="new-todos" placeholder="What needs to be done?" autofocus onkeyup="enterPress(event)">
+		</header>
+		<section class="main">
+			<input type="checkbox" id="toggle-all" class="toggle-all">
+			<label for="toggle-all"></label>
+			<ul class="todo-list" id="todo-list">
+<!-- 				<li id="0">
+					<div class="view">
+						<input type="checkbox"  class="toggle" onclick="toggleState(0)"/>
+						<label>item1</label>
+						<button class="destroy" onclick="removeItem('0')"></button>
+					</div>
+					<input class="input">
+				</li> -->
+			</ul>
+		</section>
+		<footer class="footer">
+			<span class="todo-count" id="todo-count">0 item left</span>
+			<ul class="filters">
+				<li><a href="#" onclick="selectAllItems()" class="selected" id="All">All</a></li>
+				<li><a href="#" onclick="selectActiveItems()" id="Actived">Active</a></li>
+				<li><a href="#" onclick="selectCompletedItems()" id = "Completed">Completed</a></li>
+			</ul>
+			<button class="clear-completed" onclick="clearCompleted()">Clear completed</button>
+		</footer>
+	</section>
+	<footer class="info">
+		<p>Double-click to edit a todo</p>
+		<p>Created by EvangelineWong</p>
+		<p>forked from Christoph Burgmer</p>
+		<p>Part of TodoMVC</p>
+	</footer>
+</body>
+</html>
